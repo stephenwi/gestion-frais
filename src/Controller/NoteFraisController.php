@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class NoteFraisController extends AbstractController
 {
-    #[Route('/', name: 'app_note_frais_index', methods: ['GET'])]
+    #[Route('/dashboard', name: 'app_note_frais_index', methods: ['GET'])]
     public function index(NoteFraisRepository $noteFraisRepository): Response
     {
         return $this->render('note_frais/index.html.twig', [
@@ -21,7 +21,7 @@ class NoteFraisController extends AbstractController
         ]);
     }
 
-    #[Route('/nouvelle-note-de-frais', name: 'app_note_frais_new', methods: ['GET', 'POST'])]
+    #[Route('/dashboard/nouvelle-note-de-frais', name: 'app_note_frais_new', methods: ['GET', 'POST'])]
     public function new(Request $request, NoteFraisRepository $noteFraisRepository): Response
     {
         $noteFrai = new NoteFrais();
@@ -40,7 +40,7 @@ class NoteFraisController extends AbstractController
         ]);
     }
 
-    #[Route('/visualiser/{id}/note-de-frais', name: 'app_note_frais_show', methods: ['GET'])]
+    #[Route('/dashboard/visualiser/{id}/note-de-frais', name: 'app_note_frais_show', methods: ['GET'])]
     public function show(NoteFrais $noteFrai): Response
     {
         return $this->render('note_frais/show.html.twig', [
@@ -48,7 +48,7 @@ class NoteFraisController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/editer-note-de-frais', name: 'app_note_frais_edit', methods: ['GET', 'POST'])]
+    #[Route('/dashboard/{id}/editer-note-de-frais', name: 'app_note_frais_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, NoteFrais $noteFrai, NoteFraisRepository $noteFraisRepository): Response
     {
         $form = $this->createForm(NoteFraisType::class, $noteFrai);
@@ -66,7 +66,7 @@ class NoteFraisController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/supprimer-note-de-frais', name: 'app_note_frais_delete', methods: ['POST'])]
+    #[Route('/dashboard/{id}/supprimer-note-de-frais', name: 'app_note_frais_delete', methods: ['POST'])]
     public function delete(Request $request, NoteFrais $noteFrai, NoteFraisRepository $noteFraisRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$noteFrai->getId(), $request->request->get('_token'))) {
