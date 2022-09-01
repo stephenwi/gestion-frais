@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NoteFrais{% endblock %}
+
+
+{% block body %}
+    <h1 class="text-center mt-5 mb-5">NoteFrais</h1>
+
+    <table class="table table-success table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ note_frai.id }}</td>
+            </tr>
+            <tr>
+                <th>Identifiant</th>
+                <td>{{ note_frai.identifiant }}</td>
+            </tr>
+            <tr>
+                <th>Note_date</th>
+                <td>{{ note_frai.noteDate ? note_frai.noteDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ note_frai.amount }}</td>
+            </tr>
+            <tr>
+                <th>RegisteredAt</th>
+                <td>{{ note_frai.registeredAt ? note_frai.registeredAt|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+   <div class="text-center">
+        <a class="btn btn-info" href="{{ path('app_note_frais_index') }}">back to list</a>
+
+        <a class="btn btn-warning" href="{{ path('app_note_frais_edit', {'id': note_frai.id}) }}">edit</a>
+   </div>
+    {{ include('note_frais/_delete_form.html.twig') }}
+{% endblock %}

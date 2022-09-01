@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New NoteFrais{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5">Création d'une nouvelle note</h1>
+
+        {{ include('note_frais/_form.html.twig') }}
+        <div class="text-center">
+             <a class="btn btn-info" href="{{ path('app_note_frais_index') }}">back to list</a>
+        </div>
+    </div>
+{% endblock %}

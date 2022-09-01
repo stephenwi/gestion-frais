@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Note de Frais {% endblock %}
+
+
+{% block body %}
+
+    <div class="container">
+            <h1 class="text-center mt-5 mb-5">Note de Frais</h1>
+
+            <table class="table table-success table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Identifiant</th>
+                        <th>Note_date</th>
+                        <th>Amount</th>
+                        <th>RegisteredAt</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for note_frai in note_frais %}
+                    <tr>
+                        <td>{{ note_frai.id }}</td>
+                        <td>{{ note_frai.identifiant }}</td>
+                        <td>{{ note_frai.noteDate ? note_frai.noteDate|date('Y-m-d') : '' }}</td>
+                        <td>{{ note_frai.amount }}</td>
+                        <td>{{ note_frai.registeredAt ? note_frai.registeredAt|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <a href="{{ path('app_note_frais_show', {'id': note_frai.id}) }}">show</a>
+                            <a href="{{ path('app_note_frais_edit', {'id': note_frai.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        <div class="text-center">
+            <a class="btn btn-success" href="{{ path('app_note_frais_new') }}">New note</a>
+        </div>
+    </div>
+{% endblock %}
